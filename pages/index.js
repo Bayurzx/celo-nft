@@ -18,7 +18,7 @@ export default function Home() {
   const loadNfts = async () => {
     // ***provider, tokenContract, marketContract, data for our marketItems***
 
-    const provider = new ethers.providers.JsonRpcProvider();
+    const provider = new ethers.providers.JsonRpcProvider("https://alfajores-forno.celo-testnet.org");
     const tokenContract = new ethers.Contract(nftAddress, NFT.abi, provider);
     const marketContract = new ethers.Contract(kbMarketAddress, kbMarket.abi, provider);
     const data = await marketContract.fetchMarketTokens()

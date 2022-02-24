@@ -1,8 +1,6 @@
 require("@nomiclabs/hardhat-waffle");
 require('dotenv').config();
 
-const projectId = process.env.REACT_APP_PROJECT_ID;
-
 process.env.REACT_APP_PRIVATE_KEY ? console.log("REACT_APP_PRIVATE_KEY: True") : console.log("REACT_APP_PRIVATE_KEY: False"); ;
 // This is a sample Hardhat task. To learn how to create your own go to
 // https://hardhat.org/guides/create-task.html
@@ -27,14 +25,15 @@ module.exports = {
     hardhat: {
       chainId: 1337 // config standard
     },
-    mumbai: {
-      url: `https://polygon-mumbai.infura.io/v3/${projectId}`,
-      accounts: [process.env.REACT_APP_PRIVATE_KEY]
-    },
-    mainnet: {
-      url: `https://mainnet.infura.io/v3/${projectId}`,
-      accounts: [process.env.REACT_APP_PRIVATE_KEY]
+    alfajores: {
+      url: "https://alfajores-forno.celo-testnet.org",
+      accounts: {
+        mnemonic: process.env.MNEMONIC,
+        path: "m/44'/52752'/0'/0"
+      },
+      chainId: 44787
     }
+
   },
   solidity: {
     version: "0.8.4",

@@ -66,6 +66,7 @@ export default function MintItem() {
     let contract = new ethers.Contract(nftAddress, NFT.abi, signer)
     let transaction = await contract.mintToken(url);
     let tx = await transaction.wait()
+    console.log("mintToken", tx);
     let event = tx.events[0]
     let value = event.args[2]
     let tokenId = value.toNumber()
@@ -75,9 +76,13 @@ export default function MintItem() {
     contract = new ethers.Contract(kbMarketAddress, kbMarket.abi, signer)
     let listingPrice = await contract.getListingPrice()
     listingPrice = listingPrice.toString()
+
+    console.log('listingPrice', listingPrice);
     // 
-    transaction = await contract.makeMarketItem(nftAddress, tokenId, price, {value: listingPrice})
-    await transaction.wait()
+    transaction = await contract.makeMarketItem(nftAddress, tokenId, price, { value: listingPrice, gasLimit: 200000})
+    console.log('makingMarket', transaction);
+    let madeMarket = await transaction.wait()
+    console.log('madeMarket', madeMarket);
 
     router.push('./');
   }

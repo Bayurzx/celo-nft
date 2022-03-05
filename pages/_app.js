@@ -7,7 +7,7 @@ const KryptoBirdMarketplace = ({Component, pageProps}) => {
     <div>
       <nav className="border-b p-6" style={{ backgroundColor: "purple" }} >
         <p className="text-4x1 font-bold text-white">
-          KryptoBird Marketplace
+          NFT Marketplace
         </p>
         <div className="flex mt-4 justify-center">
           <Link href="/">

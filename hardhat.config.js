@@ -1,7 +1,6 @@
 require("@nomiclabs/hardhat-waffle");
 require('dotenv').config();
 
-process.env.REACT_APP_PRIVATE_KEY ? console.log("REACT_APP_PRIVATE_KEY: True") : console.log("REACT_APP_PRIVATE_KEY: False"); ;
 // This is a sample Hardhat task. To learn how to create your own go to
 // https://hardhat.org/guides/create-task.html
 

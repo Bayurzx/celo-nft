@@ -59,11 +59,16 @@ export default function Home() {
     const contract = new ethers.Contract(kbMarketAddress, kbMarket.abi, signer)
 
     const price = ethers.utils.parseUnits(nft.price.toString(), 'ether')
-    const transaction = await contract.createMarketSale(nftAddress, nft.tokenId, {
-      value: price
-    })
+    try {
+      const transaction = await contract.createMarketSale(nftAddress, nft.tokenId, {
+        value: price
+      })
+      await transaction.wait()
 
-    await transaction.wait()
+    } catch (error) {
+      console.error('errored', error);
+    }
+
     loadNfts() // to reload our nfts after there has been a buy
 
   }
@@ -86,16 +91,16 @@ export default function Home() {
                 <div key={i} className="border shadow rounded-x1 overflow-hidden bg-purple-200 px-5">
                   <img src={nft.image} alt="" />
                   <div className="p-4">
-                    <p style={{height: '64px'}} className="text-3x1 font-semibold">
+                    <p style={{ height: '64px' }} className="text-3x1 font-semibold">
                       {nft.name}
                     </p>
-                    <div style={{height:'72px', overflow:'hidden'}}>
+                    <div style={{ height: '72px', overflow: 'hidden' }}>
                       <p className="text-gray-400">{nft.description} </p>
                     </div>
                   </div>
                   <div className="p-4 bg-black">
                     <p className="text-3x-1 mb-4 font-bold text-white">{nft.price} ETH</p>
-                    <button 
+                    <button
                       className="w-full bg-purple-500 text-white font-bold py-3 px-12 rounded"
                       onClick={() => buyNFT(nft)}
                     >

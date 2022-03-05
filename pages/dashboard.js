@@ -68,6 +68,7 @@ export default function Dashboard() {
 
   return (
     <>
+      {/* {console.log('nfts', nfts)} */}
       <div className="p-4">
         <h1 className="py-2" style={{fontSize: '26px', backgroundColor: 'white', padding:'20px', fontWeight: 'bold', color: "purple"}}>Tokens Minted</h1>
         <div className="px-4">

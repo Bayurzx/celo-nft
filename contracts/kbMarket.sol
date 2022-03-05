@@ -2,7 +2,6 @@
 pragma solidity ^0.8.4;
 
 // import openzepellin ERC721 NFT Functionality
-
 import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 import "@openzeppelin/contracts/security/ReentrancyGuard.sol"; // security against multiple requests
 import "@openzeppelin/contracts/utils/Counters.sol";
@@ -100,7 +99,7 @@ contract kbMarket is ReentrancyGuard {
         uint price = idToMarketToken[itemId].price;
         uint tokenId = idToMarketToken[itemId].tokenId;
 
-        require(msg.value == price, "Please submit the correct asking price");
+        require(msg.value >= price, "Please submit the correct asking price");
 
         // transfer the amount to the seller
         idToMarketToken[itemId].seller.transfer(msg.value); // might calculate own percentage here 
@@ -148,7 +147,7 @@ contract kbMarket is ReentrancyGuard {
             }
         }
 
-        // another loop for the amount you havr purchased, check to see if owner is msg.sender
+        // another loop for the amount you have purchased, check to see if owner is msg.sender
         MarketToken[] memory items = new MarketToken[](itemCount);
 
         for (uint256 i = 0; i < totalItemCount; i++) {

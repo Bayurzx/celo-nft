@@ -323,4 +323,10 @@ eth_getTransactionReceipt
 - Added dashboard, made slight changes
 - Notice that after minting, we get directed to `Marketplace`. That is thanks to `router.push('./')`
 - Notice that next automatically sets our routes. It detects the name of the file in pages and routes there
-- 
+
+
+
+# Switching to CELO Network!
+
+The internal transaction failed error caused during minting a transaction was failed due to insufficient gas simply indicate a high gas limit
+`await contract.makeMarketItem(nftAddress, tokenId, price, { value: listingPrice, gasLimit: 500000})`

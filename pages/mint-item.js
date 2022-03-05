@@ -11,6 +11,7 @@ import { useRouter } from 'next/router';
 const client = ipfsHttpClient('https://ipfs.infura.io:5001/api/v0');
 
 export default function MintItem() {
+  const [isDisabled, setIsDisabled] = useState(false)
   const [fileUrl, setFileUrl] = useState(null);
   const [formInput, setFormInput] = useState({
     price: "",
@@ -22,6 +23,7 @@ export default function MintItem() {
   // set up a fnuction to fireoff when we update files in out form
 
   const onFileChange = async (e) => {
+    setIsDisabled(true)
     const file = e.target.files[0];
     try {
       const added = await client.add(file, {
@@ -30,9 +32,13 @@ export default function MintItem() {
   
       const url = `https://ipfs.infura.io/ipfs/${added.path}`
       setFileUrl(url);
+      setIsDisabled(false)
+
       
     } catch (error) {
       console.log(error);
+      setIsDisabled(false)
+
     }
   }
 
@@ -66,7 +72,7 @@ export default function MintItem() {
     let contract = new ethers.Contract(nftAddress, NFT.abi, signer)
     let transaction = await contract.mintToken(url);
     let tx = await transaction.wait()
-    console.log("mintToken", tx);
+    // console.log("mintToken", tx);
     let event = tx.events[0]
     let value = event.args[2]
     let tokenId = value.toNumber()
@@ -77,12 +83,10 @@ export default function MintItem() {
     let listingPrice = await contract.getListingPrice()
     listingPrice = listingPrice.toString()
 
-    console.log('listingPrice', listingPrice);
-    // 
-    transaction = await contract.makeMarketItem(nftAddress, tokenId, price, { value: listingPrice, gasLimit: 200000})
-    console.log('makingMarket', transaction);
-    let madeMarket = await transaction.wait()
-    console.log('madeMarket', madeMarket);
+    // console.log('listingPrice', listingPrice);
+    
+    transaction = await contract.makeMarketItem(nftAddress, tokenId, price, { value: listingPrice, gasLimit: 500000})
+    await transaction.wait()
 
     router.push('./');
   }
@@ -123,10 +127,14 @@ export default function MintItem() {
         }
         <button 
           className="font-bold mt-5 bg-purple-500 text-white rounded py-3 shadow-lg"
+          disabled={isDisabled}
           onClick={createMarket}
         >
           Mint NFT
         </button>
+        <br />
+        <hr />
+        <i>There is a 0.045 Celo listing fee</i>
       </div>
     </div>
 

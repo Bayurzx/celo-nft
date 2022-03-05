@@ -1,15 +1,15 @@
-# Basic Sample Hardhat Project
+# NFT Marketplace
 
-This project demonstrates a basic Hardhat use case. It comes with a sample contract, a test for that contract, a sample script that deploys that contract, and an example of a task implementation, which simply lists the available accounts.
+## Created an Celo NFT marketplace built with etherjs and deployed with hardhat.
+I wanted to test out if utilizing etherjs only to communicate with the celo network, was feasible without celo contractKit in building a NFT marketplace. I am glad it worked.
 
-Try running some of the following tasks:
+I also wrote code to help deploy the contract to the marketplace, and dynamically save the contract address. In `scripts\deploy.js` file
 
-```shell
-npx hardhat accounts
-npx hardhat compile
-npx hardhat clean
-npx hardhat test
-npx hardhat node
-node scripts/sample-script.js
-npx hardhat help
-```
+Fixed gas price issue users might face when creating market sale in `pages\mint-item.js` 
+
+``` js
+await contract.makeMarketItem(nftAddress, tokenId, price, { value: listingPrice, gasLimit: 500000})
+``` 
+
+## Check it out here 👇🏼👇🏼👇🏼
+https://celo-nfts.netlify.app

@@ -99,7 +99,7 @@ export default function Home() {
                     </div>
                   </div>
                   <div className="p-4 bg-black">
-                    <p className="text-3x-1 mb-4 font-bold text-white">{nft.price} ETH</p>
+                    <p className="text-3x-1 mb-4 font-bold text-white">{nft.price} Celo</p>
                     <button
                       className="w-full bg-purple-500 text-white font-bold py-3 px-12 rounded"
                       onClick={() => buyNFT(nft)}

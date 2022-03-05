@@ -110,7 +110,7 @@ export default function MintItem() {
         />
         <input 
           type="text" 
-          placeholder='Asset Price in Eth'
+          placeholder='Asset Price in Celo'
           className="mt-8 border rounded p-4" 
           onChange={e => setFormInput({...formInput, price: e.target.value})}
         />

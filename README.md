@@ -12,4 +12,4 @@ await contract.makeMarketItem(nftAddress, tokenId, price, { value: listingPrice,
 ``` 
 
 ## Check it out here 👇🏼👇🏼👇🏼
-https://celo-nfts.netlify.app
+https://celo-nft.vercel.app/

@@ -5,11 +5,11 @@ I wanted to test out if utilizing etherjs only to communicate with the celo netw
 
 I also wrote code to help deploy the contract to the marketplace, and dynamically save the contract address. In `scripts\deploy.js` file
 
-Fixed gas price issue users might face when creating market sale in `pages\mint-item.js` 
-
-``` js
-await contract.makeMarketItem(nftAddress, tokenId, price, { value: listingPrice, gasLimit: 500000})
-``` 
+Usage
+Install the CeloExtensionWallet from the google chrome store.
+Create a wallet.
+Go to https://celo.org/developers/faucet and get tokens for the alfajores testnet.
+Switch to the alfajores testnet in the CeloExtensionWallet.
 
 ## Check it out here 👇🏼👇🏼👇🏼
 https://celo-nft.vercel.app/
